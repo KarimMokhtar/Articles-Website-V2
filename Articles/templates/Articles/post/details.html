@@ -1,0 +1,66 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Post</title>
+
+        <!-- Styles -->
+        <link rel = "stylesheet" href = "{% static 'Articles/bootstrap.min.css' %}" />
+        <link rel = "stylesheet" href = "{% static 'Articles/style.css' %}"/>
+        
+    </head>
+    <body>
+        {% include "Articles/navbar.html" %}
+        <div class="position-ref full-height container">
+            <h1>{{post.title}}</h1>
+            <p>By <a>{{post.Author.username}}</a></p>
+            <p> Posted {{post.created_at}}</p>
+            <hr>
+            <!-- post content -->
+            <div>
+                {{post.body}}
+                {% if user.username ==  post.Author.username%}
+                    <form method='POST' action = "{% url 'Articles:Pedit' post.id %}" >
+                        {% csrf_token %}
+                        <input type='submit' value='Edit' class="btn btn-primary" />
+                    </form>
+                    <form method='POST' action = "{% url 'Articles:Pdelete' post.id %}" >
+                        {% csrf_token %}
+                        <input type='submit' value='Delete' class="btn btn-danger" />
+                    </form>
+                {% endif %}
+            </div>
+            {% if user.is_authenticated %}
+            <!-- Comments Form -->
+            <div class="well">
+                <h4>Leave a Comment:</h4>
+                <form method='post' >
+                    
+                    
+                </form>
+            </div>
+            {% endif %}
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </div>
+        
+        
+        
+        
+        
+        
+    <script src="{% static 'Articles/jquery.js' %}"></script>
+    <script src="{% static 'Articles/bootstrap.min.js' %}"></script>
+    <script src="{% static 'Articles/scripts.js' %}"></script>
+    </body>
+</html>

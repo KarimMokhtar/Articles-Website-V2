@@ -1,0 +1,113 @@
+<style>
+    html, body {
+        background-color: #fff;
+        color: #636b6f;
+        font-weight: 100;
+        height: 100vh;
+        margin: 0;
+        padding-top: 0;
+    }
+
+    .full-height {
+        height: 100vh;
+    }
+
+    .flex-center {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .position-ref {
+        position: relative;
+    }
+
+    .top-right {
+        position: absolute;
+        right: 10px;
+        top: 18px;
+    }
+
+    .content {
+        text-align: center;
+    }
+
+    .title {
+        font-size: 84px;
+    }
+
+    .links > a {
+        color: #636b6f;
+        padding: 0 25px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: .1rem;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+
+    .m-b-md {
+        margin-bottom: 30px;
+    }
+    .answers{
+        display: inline-block;
+        height: 10px;
+        min-width: 40px;
+        margin: 5px 7px 0 0;
+        font-size: 11px;
+        color: #848d95;
+        text-align: center;
+    }
+    .answer{
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+    .mini-counts{
+        font-size: 17px;
+        font-weight: 300;
+        color: #6a737c;
+    }
+    .summary{
+        margin: -20px 7px 0 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+        width: 590px;
+        padding: 0;
+        float: left;
+    }
+    .post-hyperlink{
+        color: #07C;
+        line-height: 1.3;
+        margin-bottom: 1.2em;
+    }
+    .started{
+        float: right;
+    }
+    .relative-time{
+        font-size: 12px;
+        font-weight: 200;
+        color: #6a737c;
+    }
+    .sidebar{
+        float: right;
+        overflow: hidden;
+        width: 300px;
+        margin: 0 0 15px;
+        position: relative;
+    }
+    .mainbar{
+        float: left;
+        width: 728px;
+        margin: 0;
+        padding: 0;
+    }
+    .Comming{
+        margin-top: 50px !important;
+    }
+</style>

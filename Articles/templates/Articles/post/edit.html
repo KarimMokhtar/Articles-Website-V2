@@ -1,0 +1,56 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Create Post</title>
+
+        <!-- Styles -->
+        <link rel = "stylesheet" href = "{% static 'Articles/bootstrap.min.css' %}" />
+        <link rel = "stylesheet" href = "{% static 'Articles/style.css' %}"/>
+        
+    </head>
+    <body>
+        {% include "Articles/navbar.html" %}
+        <div class="position-ref full-height container">
+            <form method="post" action="{% url 'Articles:Pupdate' post.id %}">
+                {% csrf_token %}
+                <label>Title:</label>
+                <input name = "title" type="text" class="form-control" value={{post.title}}/>
+                {%if categories%}
+                <label>Category:</label>
+                <select name = "category" value = "value={{post.category}}"class="form-control">
+                    {% for category in categories %}
+                    <option  value = "{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+                {%endif %}
+                <label>Body:</label>
+                <textarea class="form-control" name='body' value = "{{post.body}}"> </textarea>
+                
+                <input type="submit" value="Update" class ="btn btn-primary"/>
+                
+            </form>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </div>
+        
+        
+        
+        
+        
+        
+    <script src="{% static 'Articles/jquery.js' %}"></script>
+    <script src="{% static 'Articles/bootstrap.min.js' %}"></script>
+    <script src="{% static 'Articles/scripts.js' %}"></script>
+    </body>
+</html>

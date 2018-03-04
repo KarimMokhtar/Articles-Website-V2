@@ -1,0 +1,76 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Stake OverFlow</title>
+
+        <!-- Styles -->
+        <link rel = "stylesheet" href = "{% static 'Articles/bootstrap.min.css' %}" />
+        <link rel = "stylesheet" href = "{% static 'Articles/style.css' %}"/>
+        
+    </head>
+    <body>
+        {% include "Articles/navbar.html" %}
+
+        <div class="position-ref full-height container">
+            <!-- start of showing the posts -->
+            <div class="mainbar pull-left">
+                <table class="table">
+                   
+                    <tbody>
+                        <h4>Top posts</h4>
+                        {% for post in list %}
+                            <tr>
+                                <th>
+                                    <div class = "answers">
+                                        <div class = "mini-counts">
+                                            <span class="answer">4</span>
+                                        </div>
+                                        <div>answers</div>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="summary">
+                                        <h3><a class ="post-hyperlink" href="{% url 'Articles:Pshow' post.id %}">{{post.title}}</a></h3>
+                                        
+                                        <div class = "started">
+                                            {% if post.updated_at %}
+                                                <span class="relative-time">modified {{post.updated_at|timesince}} ago</span>
+                                            {%else%}
+                                                <span class="relative-time">posted {{post.created_at|timesince}} ago</span>
+                                            {%endif%}
+                                        </div>
+                                        <div >
+                                            <span class="relative-time">Category: {{post.categor.name}}</span>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+            <!-- End of showing the posts -->
+            <div class = "pull-right sidebar">
+                <div class = "pull-right">
+                    <a href="{% url 'Articles:Pcreate' %}" class="btn btn-primary">Ask Question</a>
+                </div>
+                <div class="Comming">
+                    <h1>Comming</h1>
+                    <ul>
+                        <li>hot questions</li>
+                        <li><del>ask question</del></li>
+                        <li>user profile</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    <script src="{% static 'Articles/jquery.js' %}"></script>
+    <script src="{% static 'Articles/bootstrap.min.js' %}"></script>
+    
+    <script src="{% static 'Articles/scripts.js' %}"></script>
+    </body>
+</html>
