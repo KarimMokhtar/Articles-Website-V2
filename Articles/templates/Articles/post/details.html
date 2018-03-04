@@ -24,7 +24,7 @@
                   
                     <form method='POST' action = "{% url 'Articles:Pedit' post.id %}" >
                         {% csrf_token %}
-                        <input type='submit' value='Edit' class="btn btn-primary" />
+                        <input type='submit' value='Edit' class="btn btn-primary pull-left" />
                     </form>
                     <form method='POST' action = "{% url 'Articles:Pdelete' post.id %}" >
                         {% csrf_token %}
@@ -54,28 +54,38 @@
                     </h4>
                     {{comment.body}}
     
-                    <hr>
+                    
                     <!-- Nested Comment -->
+                    <form method='POST' action = "{% url 'Articles:Rstore' comment.id %}" >
+                        {% csrf_token %}
+                        <textarea class="form-control" name="body"> </textarea>
+                        <input type='submit' value='Reply' class="btn btn-primary" />
+                    </form>
                     
-    
                     
+                    
+                    {% for reply in comment.reply_set.all %}
+                        
+                        <div  class="media">
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    <a href="#">{{reply.Author.username}}</a>
+                                </h4>
+                                {{reply.body}}
+                            </div>
+                            
+                        </div>
+                        
+                        
+                    {% endfor %}
                     <!-- End Nested Comment -->
-    
+                    <hr>
                     </div>
                 </div>
-            
-            
+
             {% endfor %}
             
-            
-            
-            
-            
         </div>
-        
-        
-        
-        
         
         
     <script src="{% static 'Articles/jquery.js' %}"></script>

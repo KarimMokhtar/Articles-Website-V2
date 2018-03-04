@@ -1,7 +1,8 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import Post, Category, Comment, Reply
 from datetime import datetime
+from django.urls import reverse
 
 # Create your views here.
 
@@ -108,7 +109,8 @@ def Pdelete(request, post_id):
         
         p = Post.objects.get(pk=post_id)
         p.delete()
-        return redirect('/Articles')
+        
+        return HttpResponseRedirect(reverse('Articles'))
     
     else:
         return HttpResponse("Sorry you aren't allowed.")
@@ -132,7 +134,7 @@ def Cstore(request, post_id):
         
         c.save()
         
-        return render(request,'Articles/post/details.html',{"post":c.post})
+        return HttpResponseRedirect(reverse('Articles:Pshow', args=(c.post.id,)))
     
     else:
         return HttpResponse("Sorry you aren't allowed.")
@@ -155,7 +157,7 @@ def Rstore(request, comment_id):
         
         r.save()
         
-        return render(request,'Articles/post/details.html',{"post":r.comment.post})
+        return HttpResponseRedirect(reverse('Articles:Pshow', args=(r.comment.post.id,)))
     
     else:
         return HttpResponse("Sorry you aren't allowed.")
