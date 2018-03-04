@@ -32,10 +32,9 @@ class Post(models.Model):
     
 class Comment(models.Model):
     
-    post      = models.ForeignKey(Post, on_delete = models.CASCADE)
     body      = models.CharField(max_length = 200)
-    author_id = models.IntegerField(default = 0)
-    
+    post      = models.ForeignKey(Post, on_delete = models.CASCADE, null = True)
+    Author    = models.ForeignKey(User, on_delete = models.CASCADE, null = True)
     def __str__(self):
         return self.body
     
@@ -43,10 +42,9 @@ class Comment(models.Model):
     
 class Reply(models.Model):
     
-    comment   = models.ForeignKey(Comment, on_delete = models.CASCADE)
     body      = models.CharField(max_length = 200)
-    author_id = models.IntegerField(default = 0)
-    
+    comment   = models.ForeignKey(Comment, on_delete = models.CASCADE, null = True)
+    Author    = models.ForeignKey(User, on_delete = models.CASCADE, null = True)
     def __str__(self):
         return self.body
     

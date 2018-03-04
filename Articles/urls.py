@@ -12,5 +12,12 @@ urlpatterns = [
     path('<int:post_id>/updatePost',views.Pupdate, name = 'Pupdate'),
     path('<int:post_id>/editPost',views.Pedit, name = 'Pedit'),
     path('<int:post_id>/deletePost',views.Pdelete, name = 'Pdelete'),
+    
+    
     # comment Urls
+    path('comment/<int:post_id>', views.Cstore, name = 'Cstore'),
+    
+    
+    # replies Urls
+    path('reply/<int:comment_id>', views.Rstore, name = 'Rstore'),
 ]

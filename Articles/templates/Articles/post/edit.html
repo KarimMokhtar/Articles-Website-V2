@@ -15,16 +15,20 @@
         <div class="position-ref full-height container">
             <form method="post" action="{% url 'Articles:Pupdate' post.id %}">
                 {% csrf_token %}
+                
                 <label>Title:</label>
-                <input name = "title" type="text" class="form-control" value={{post.title}}/>
+                <input name = "title" type="text" class="form-control" value={{post.title}}>
                 {%if categories%}
+                
                 <label>Category:</label>
                 <select name = "category" value = "value={{post.category}}"class="form-control">
                     {% for category in categories %}
                     <option  value = "{{ category.id }}">{{ category.name }}</option>
                     {% endfor %}
                 </select>
+                
                 {%endif %}
+                
                 <label>Body:</label>
                 <textarea class="form-control" name='body' value = "{{post.body}}"> </textarea>
                 

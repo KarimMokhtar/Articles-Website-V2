@@ -21,6 +21,7 @@
             <div>
                 {{post.body}}
                 {% if user.username ==  post.Author.username%}
+                  
                     <form method='POST' action = "{% url 'Articles:Pedit' post.id %}" >
                         {% csrf_token %}
                         <input type='submit' value='Edit' class="btn btn-primary" />
@@ -29,24 +30,42 @@
                         {% csrf_token %}
                         <input type='submit' value='Delete' class="btn btn-danger" />
                     </form>
+                    
                 {% endif %}
             </div>
             {% if user.is_authenticated %}
             <!-- Comments Form -->
             <div class="well">
                 <h4>Leave a Comment:</h4>
-                <form method='post' >
-                    
-                    
+                <form method='POST' action = "{% url 'Articles:Cstore' post.id%}" >
+                    {% csrf_token %}
+                    <textarea class="form-control" name="body"> </textarea>
+                    <input type='submit' value='Comment' class="btn btn-primary" />
                 </form>
             </div>
             {% endif %}
             
+            <!-- Comments on this post -->
+            {% for comment in post.comment_set.all %}
+                <div class="media">
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        <a href="#">{{comment.Author.username}}</a>
+                    </h4>
+                    {{comment.body}}
+    
+                    <hr>
+                    <!-- Nested Comment -->
+                    
+    
+                    
+                    <!-- End Nested Comment -->
+    
+                    </div>
+                </div>
             
             
-            
-            
-            
+            {% endfor %}
             
             
             

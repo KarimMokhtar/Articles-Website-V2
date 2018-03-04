@@ -1,7 +1,7 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse
-from .models import Post,Category
-from django.shortcuts import redirect
+from .models import Post, Category, Comment, Reply
+from datetime import datetime
 
 # Create your views here.
 
@@ -50,7 +50,7 @@ def Pupdate(request, post_id):
         p.categor     = Category.objects.get(pk=p.category_id)
         p.user_id     = request.user.id
         p.Author      = request.user
-        
+        p.updated_at  = datetime.now()
         p.save()
         
         return render(request, 'Articles/post/details.html', { 'post' : p } )
@@ -117,4 +117,46 @@ def Pdelete(request, post_id):
 
 
 
+# Comment Views
+
+def Cstore(request, post_id):
+    
+    if request.method == 'POST':
+        
+        c = Comment(
+            body    = request.POST.get("body"),
+        )
+        
+        c.Author    = request.user
+        c.post      = Post.objects.get(pk=post_id)
+        
+        c.save()
+        
+        return render(request,'Articles/post/details.html',{"post":c.post})
+    
+    else:
+        return HttpResponse("Sorry you aren't allowed.")
+    
+    
+    
+    
+# Reply Views
+
+def Rstore(request, comment_id):
+    
+    if request.method == 'POST':
+        
+        r = Reply(
+            body    = request.POST.get("body"),
+        )
+        
+        r.Author    = request.user
+        r.comment      = Comment.objects.get(pk=comment_id)
+        
+        r.save()
+        
+        return render(request,'Articles/post/details.html',{"post":r.comment.post})
+    
+    else:
+        return HttpResponse("Sorry you aren't allowed.")
 
